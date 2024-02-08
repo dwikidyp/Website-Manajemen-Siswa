@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Feb 2024 pada 06.41
+-- Waktu pembuatan: 08 Feb 2024 pada 00.59
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -106,6 +106,13 @@ CREATE TABLE `students` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `address`, `mobile`, `created_at`, `updated_at`) VALUES
+(1, 'Adit', 'Tangerang', '08126476154', '2024-02-07 16:57:59', '2024-02-07 16:57:59');
+
 -- --------------------------------------------------------
 
 --
@@ -193,7 +200,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
