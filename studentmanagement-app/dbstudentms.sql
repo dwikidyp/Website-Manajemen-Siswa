@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Feb 2024 pada 00.59
+-- Waktu pembuatan: 11 Feb 2024 pada 01.23
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -58,7 +58,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2024_02_07_052625_create_students_table', 1);
+(5, '2024_02_07_052625_create_students_table', 1),
+(6, '2024_02_11_001707_create_teachers_table', 2);
 
 -- --------------------------------------------------------
 
@@ -111,7 +112,29 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `address`, `mobile`, `created_at`, `updated_at`) VALUES
-(1, 'Adit', 'Tangerang', '08126476154', '2024-02-07 16:57:59', '2024-02-07 16:57:59');
+(1, 'Adit', 'Tangerang', '08126476154', '2024-02-07 16:57:59', '2024-02-08 19:46:55');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `mobile` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `address`, `mobile`, `created_at`, `updated_at`) VALUES
+(2, 'Putra', 'Bandung', '0825265', '2024-02-10 17:23:02', '2024-02-10 17:23:02');
 
 -- --------------------------------------------------------
 
@@ -168,6 +191,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
@@ -188,7 +217,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -200,7 +229,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT untuk tabel `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
