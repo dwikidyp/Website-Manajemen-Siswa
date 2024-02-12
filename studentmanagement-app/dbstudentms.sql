@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Feb 2024 pada 01.23
+-- Waktu pembuatan: 12 Feb 2024 pada 22.36
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbstudentms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `syllabus` varchar(255) NOT NULL,
+  `duration` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `courses`
+--
+
+INSERT INTO `courses` (`id`, `name`, `syllabus`, `duration`, `created_at`, `updated_at`) VALUES
+(2, 'Matematika', 'Matematika Diskrit', '6 bulan', '2024-02-12 14:36:28', '2024-02-12 14:36:28');
 
 -- --------------------------------------------------------
 
@@ -59,7 +81,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2024_02_07_052625_create_students_table', 1),
-(6, '2024_02_11_001707_create_teachers_table', 2);
+(6, '2024_02_11_001707_create_teachers_table', 2),
+(7, '2024_02_12_210619_create_courses_table', 3);
 
 -- --------------------------------------------------------
 
@@ -158,6 +181,12 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indeks untuk tabel `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -208,6 +237,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -217,7 +252,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
