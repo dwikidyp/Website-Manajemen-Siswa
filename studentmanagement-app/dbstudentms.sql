@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Feb 2024 pada 22.36
+-- Waktu pembuatan: 14 Feb 2024 pada 03.39
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbstudentms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `batches`
+--
+
+CREATE TABLE `batches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `start_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `batches`
+--
+
+INSERT INTO `batches` (`id`, `name`, `course_id`, `start_date`, `created_at`, `updated_at`) VALUES
+(2, 'Matematika', 2, '2024-02-15', '2024-02-13 19:38:38', '2024-02-13 19:38:45');
 
 -- --------------------------------------------------------
 
@@ -82,7 +104,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (5, '2024_02_07_052625_create_students_table', 1),
 (6, '2024_02_11_001707_create_teachers_table', 2),
-(7, '2024_02_12_210619_create_courses_table', 3);
+(7, '2024_02_12_210619_create_courses_table', 3),
+(8, '2024_02_14_015627_create_batches_table', 4);
 
 -- --------------------------------------------------------
 
@@ -181,6 +204,13 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indeks untuk tabel `batches`
+--
+ALTER TABLE `batches`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `batches_course_id_foreign` (`course_id`);
+
+--
 -- Indeks untuk tabel `courses`
 --
 ALTER TABLE `courses`
@@ -237,6 +267,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT untuk tabel `batches`
+--
+ALTER TABLE `batches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `courses`
 --
 ALTER TABLE `courses`
@@ -252,7 +288,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -277,6 +313,16 @@ ALTER TABLE `teachers`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
+
+--
+-- Ketidakleluasaan untuk tabel `batches`
+--
+ALTER TABLE `batches`
+  ADD CONSTRAINT `batches_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
