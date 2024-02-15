@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Feb 2024 pada 03.39
+-- Waktu pembuatan: 15 Feb 2024 pada 02.30
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.1.25
 
@@ -68,6 +68,30 @@ INSERT INTO `courses` (`id`, `name`, `syllabus`, `duration`, `created_at`, `upda
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `enrollments`
+--
+
+CREATE TABLE `enrollments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `enroll_no` varchar(255) NOT NULL,
+  `batch_id` bigint(20) UNSIGNED NOT NULL,
+  `student_id` bigint(20) UNSIGNED NOT NULL,
+  `join_date` date NOT NULL,
+  `fee` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `enrollments`
+--
+
+INSERT INTO `enrollments` (`id`, `enroll_no`, `batch_id`, `student_id`, `join_date`, `fee`, `created_at`, `updated_at`) VALUES
+(2, 'E001', 2, 1, '2024-02-17', 210000, '2024-02-14 18:28:28', '2024-02-14 18:28:47');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `failed_jobs`
 --
 
@@ -105,7 +129,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2024_02_07_052625_create_students_table', 1),
 (6, '2024_02_11_001707_create_teachers_table', 2),
 (7, '2024_02_12_210619_create_courses_table', 3),
-(8, '2024_02_14_015627_create_batches_table', 4);
+(8, '2024_02_14_015627_create_batches_table', 4),
+(9, '2024_02_15_004736_create_enrollments_table', 5);
 
 -- --------------------------------------------------------
 
@@ -217,6 +242,14 @@ ALTER TABLE `courses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `enrollments_batch_id_foreign` (`batch_id`),
+  ADD KEY `enrollments_student_id_foreign` (`student_id`);
+
+--
 -- Indeks untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -279,6 +312,12 @@ ALTER TABLE `courses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT untuk tabel `enrollments`
+--
+ALTER TABLE `enrollments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -288,7 +327,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `personal_access_tokens`
@@ -323,6 +362,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `batches`
   ADD CONSTRAINT `batches_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `enrollments`
+--
+ALTER TABLE `enrollments`
+  ADD CONSTRAINT `enrollments_batch_id_foreign` FOREIGN KEY (`batch_id`) REFERENCES `batches` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `enrollments_student_id_foreign` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
