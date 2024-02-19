@@ -85,7 +85,7 @@
                     <a href="{{ url('/courses') }}">Courses</a>
                     <a href="{{ url('/batches') }}">Batches</a>
                     <a href="{{ url('/enrolments') }}">Enrollment</a>
-                    <a href="#contact">Payment</a>
+                    <a href="{{ url('/payments') }}">Payment</a>
                 </div>
             </div>
             <div class="col-md-9">

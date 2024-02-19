@@ -10,8 +10,8 @@
         <label>Enrollment No</label></br>
         
         <select name="enrollment_id" id="enrollment_id" class="form-control">
-          @foreach ($payments as $id => $enrollno)
-              <option value="{{ $id }}">{{ $enrollno }}</option>
+          @foreach ($enrollments as $id => $enroll_no)
+              <option value="{{ $id }}">{{ $enroll_no }}</option>
           @endforeach
         </select>
         
